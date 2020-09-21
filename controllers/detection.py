@@ -37,13 +37,23 @@ def detect_image(img_name, img_path, weight_path, config_path):
             
         idxs = cv2.dnn.NMSBoxes(boxes, confidences, 0.5, 0.3)
     
+    crop_imgs = []
+    crop_img_paths = []
     if len(idxs) > 0:
         for i in idxs.flatten():
             (x, y) = (boxes[i][0], boxes[i][1])
             (w, h) = (boxes[i][2], boxes[i][3])
             cv2.rectangle(img, (x, y), (x + w, y + h), (255,0,0), 2)
+            crop_img = img[y:y+h, x:x+w]
+            crop_imgs.append(crop_img)
 
     output_name = img_name.replace('.', '_detected.')
     output_path = img_path + output_name
     cv2.imwrite(output_path, img)
-    return output_path
+    for crop_img in crop_imgs:
+        output_name = img_name.replace('.', '_detected_cropped.')
+        output_cropped_path = img_path + output_name
+        crop_img_paths.append(output_cropped_path)
+        cv2.imwrite(output_cropped_path, crop_img)
+
+    return output_path, crop_img_paths

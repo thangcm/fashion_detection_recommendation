@@ -5,5 +5,12 @@
 </head>
 <body>
     <img src="{{ user_image }}" alt="User Image">
+    {% if results %}
+            {% for img_name in results %}
+                <img src="{{ img_name }}">
+            {% endfor %}
+    {% else %}
+        No results :(
+    {% endif %}
 </body>
 </html>
