@@ -28,11 +28,15 @@ def detect_image():
     config_path = os.path.join(app.config["IMAGE_UPLOADS"], 'models/yolov3-df2.cfg')
     detected_image_path, crop_img_paths = detection.detect_image(filename, app.config["IMAGE_UPLOADS"], weights_path, config_path)
     
+    print(detected_image_path)
+    print(crop_img_paths)
+
     recommend_images = []
     for path in crop_img_paths:
-        recommend_images += recommendation.recommend(path)
-        
-    return render_template("show_detection.html", user_image = detected_image_path, results=recommend_images)
+        recommend_images.append(recommendation.recommend(path))
+    # return render_template("show_detection.html", user_image = detected_image_path)
+  
+    return render_template("show_detection.html", user_image = detected_image_path, results=zip(crop_img_paths, recommend_images))
 
 
 if __name__ == '__main__':

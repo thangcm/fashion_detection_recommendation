@@ -5,6 +5,10 @@ from bs4 import BeautifulSoup
 import requests
 import selenium
 from selenium import webdriver
+from selenium.webdriver.firefox.options import Options
+
+options = Options()
+options.headless = True
 
 
 def recommend(path):
@@ -19,12 +23,8 @@ def get_image_search_link(path):
     host = urlparse(request.base_url).netloc
     url = url + host + '/' + path
     page = urllib.request.urlopen(url)
-    # soup = BeautifulSoup(requests.get(url).text, 'html.parser')
-    # images_search_wrapper = soup.find_all("a")
-    # print(images_search_wrapper)
-    # print(url)
 
-    browser = webdriver.Firefox()
+    browser = webdriver.Firefox(options=options)
     browser.get(url)
     google_title = browser.find_element_by_tag_name('title-with-lhs-icon')
     contain_link_tag = google_title.find_element_by_tag_name('a')
@@ -35,7 +35,7 @@ def get_image_search_link(path):
 
 
 def crawl_images(link):
-    browser = webdriver.Firefox()
+    browser = webdriver.Firefox(options=options)
     browser.get(link)
 
     image_divs = browser.find_elements_by_class_name('isv-r')
