@@ -61,7 +61,7 @@ def detect_image(img_name, img_path, weight_path, config_path):
             (x, y) = (boxes[i][0], boxes[i][1])
             (w, h) = (boxes[i][2], boxes[i][3])
             cv2.rectangle(img, (x, y), (x + w, y + h), (255,0,0), 2)
-            cv2.putText(img, boxes[i][4], (x-10,y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1)
+            cv2.putText(img, boxes[i][4], (x-10,y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 1)
             crop_img = copy_img[y:y+h, x:x+w]
             crop_imgs.append(crop_img)
 

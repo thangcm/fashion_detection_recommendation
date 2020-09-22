@@ -13,7 +13,6 @@ options.headless = True
 
 def recommend(path):
     link = get_image_search_link(path)
-    print(link)
     img_sources = crawl_images(link)
     return img_sources
 
@@ -29,7 +28,6 @@ def get_image_search_link(path):
     google_title = browser.find_element_by_tag_name('title-with-lhs-icon')
     contain_link_tag = google_title.find_element_by_tag_name('a')
     link = contain_link_tag.get_attribute('href')
-    print("**********************")
     print(link)
     return link
 
