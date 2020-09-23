@@ -5,6 +5,10 @@ import time
 import copy
 
 def detect_image(img_name, img_path, weight_path, config_path):
+    """
+    Detect clothes from the images, use pre-trained YOLO weight
+    Return detected result and cropped images
+    """
     net = cv2.dnn.readNetFromDarknet(config_path, weight_path)
     img = cv2.imread(img_path+img_name)
     copy_img = copy.deepcopy(img)
@@ -14,25 +18,13 @@ def detect_image(img_name, img_path, weight_path, config_path):
     ln = [ln[i[0] - 1] for i in net.getUnconnectedOutLayers()]
     blob = cv2.dnn.blobFromImage(img, 1 / 255.0, (416, 416), swapRB=True, crop=False)
     net.setInput(blob)
-    start = time.time()
     layerOutputs = net.forward(ln)
-    end = time.time()
     boxes = []
     confidences = []
     classIDs = []
-    classes = ['short sleeve top', 
-                'long sleeve top',
-                'short sleeve outwear',
-                'long sleeve outwear',
-                'vest',
-                'sling',
-                'shorts',
-                'trousers',
-                'skirt',
-                'short sleeve dress',
-                'long sleeve dress',
-                'vest dress',
-                'sling dress']
+    classes = ['short sleeve top', 'long sleeve top', 'short sleeve outwear', 'long sleeve outwear',
+                'vest', 'sling', 'shorts', 'trousers',
+                'skirt', 'short sleeve dress', 'long sleeve dress', 'vest dress', 'sling dress']
 
     for output in layerOutputs:
         for detection in output:

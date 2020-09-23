@@ -12,16 +12,21 @@ options.headless = True
 
 
 def recommend(path):
+    """
+    Find similar clothes on the Internet
+    """
     link = get_image_search_link(path)
     img_sources = crawl_images(link)
     return img_sources
 
 
 def get_image_search_link(path):
+    """
+    Get image search link, after search by image
+    """
     url = 'http://images.google.com/searchbyimage?image_url='
     host = urlparse(request.base_url).netloc
     url = url + host + '/' + path
-    page = urllib.request.urlopen(url)
 
     browser = webdriver.Firefox(options=options)
     browser.get(url)
@@ -33,6 +38,10 @@ def get_image_search_link(path):
 
 
 def crawl_images(link):
+    """
+    Crawl all image in the first page of the search results
+    """
+
     browser = webdriver.Firefox(options=options)
     browser.get(link)
 

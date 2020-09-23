@@ -15,7 +15,9 @@
                 <hr>
                 <h4>Recommended Images</h4>
                 {% for img in result[1] %}
-                    <img src="{{ img }}">
+                    {% if img %}
+                        <img src="{{ img }}">
+                    {% endif %}
                 {% endfor %}
                 <hr>
             {% endfor %}

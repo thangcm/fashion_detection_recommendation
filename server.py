@@ -51,7 +51,7 @@ def detect_image():
     print("Time for recommendation: " + str(t2 - t1))
     # return render_template("show_detection.html", user_image = detected_image_path)
   
-    return render_template("show_detection.html", user_image = detected_image_path, results=zip(crop_img_paths, recommend_images))
+    return render_template("show_results.html", user_image = detected_image_path, results=zip(crop_img_paths, recommend_images))
 
 
 if __name__ == '__main__':
