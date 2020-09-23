@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" type="text/css" href="static/css/bootstrap.css">
+<head>
+    <title>Index</title>
+</head>
+<body>
+    <h4>Detect results</h4>
+    <img src="{{ user_image }}" alt="User Image">
+    <hr>
+    {% if results %}
+            {% for result in results %}
+                <h4>Cropped Image</h4>
+                <img src="{{ result[0] }}">
+                <hr>
+                <h4>Recommended Images</h4>
+                {% for img in result[1] %}
+                    {% if img %}
+                        <img src="{{ img }}">
+                    {% endif %}
+                {% endfor %}
+                <hr>
+            {% endfor %}
+    {% else %}
+        No results
+    {% endif %}
+    <hr>
+</body>
+</html>
