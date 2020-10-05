@@ -25,3 +25,5 @@ htmlcov/
 *,cover
 
 *.weights
+*.png
+*.log

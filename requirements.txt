@@ -1,4 +1,6 @@
 flask
 requests
-cv2
+opencv-python
 numpy
+selenium
+bs4
