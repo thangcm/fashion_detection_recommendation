@@ -47,3 +47,21 @@ def detect_image(img_name, img_path, weight_path, config_path):
     output_path = img_path + output_name
     cv2.imwrite(output_path, img)
     return output_path
+
+
+def feature_image(img_path):
+    return np.random.rand(1024)
+
+
+def feature_all_images(folder_path):
+    images = []
+    for filename in os.listdir(folder_path):
+        # img = cv2.imread(os.path.join(folder_path,filename))
+        img_path = os.path.join(folder_path, filename)
+        img_feature = feature_image(img_path)
+        if img_feature is not None:
+            images.append({
+                "img_path": img_path,
+                "img_features": img_feature
+            })
+    return images

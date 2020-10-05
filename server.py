@@ -1,8 +1,10 @@
 from flask import Flask, render_template, redirect, url_for, request
 from controllers import detection
 import os
+from lshashpy3 import LSHash
 app = Flask(__name__)
 app.config["IMAGE_UPLOADS"] = "static/"
+app.config["IMAGE_STORAGE"] = "static/imgs"
 
 @app.route("/", methods=["GET", "POST"])
 def upload_image():
@@ -30,5 +32,20 @@ def detect_image():
     return render_template("show_detection.html", user_image = detected_image_path)
 
 
+def create_hash_table():
+    features = detection.feature_all_images(app.config["IMAGE_STORAGE"])
+    lsh = LSHash(
+        10, 1024, storage_config={ 'dict': None },
+        matrices_filename='weights.npz',
+        hashtable_filename='hash.npz',
+        overwrite=True
+        )
+    for feature in features:
+        lsh.index(feature["img_features"], extra_data=feature["img_path"])
+
+    lsh.save()
+    print(lsh)
+
 if __name__ == '__main__':
-   app.run()
+    create_hash_table()
+    app.run()
