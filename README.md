@@ -5,16 +5,9 @@
 pip install -r requirements.txt
 ```
 To use selenium, you have to install geckodriver first
-## 2. Download pre-trained weights
-Download `yolov3-df2_15000.weights` from https://drive.google.com/drive/folders/1b7laIv9-oeh59XSV6aOO50eMKbTGsPoP and put into static/models/ folder
-
+## 2. Download weights
+Download pytorch model from https://drive.google.com/file/d/1BKczqiUiT1pd54EhqfMSn4thB_g1I2X-/view?usp=sharing  and save in folder static/models
 ## 3. Run Server:
 ```
 python server.py
 ```
-
-## 4. Public server through ngrok
-In order to use google images search, you must public your image links.
-Public local server through ngrok, and use public server 
-Go to http://ngrok-random-string-server:5000 to test
-Upload your images and get the results

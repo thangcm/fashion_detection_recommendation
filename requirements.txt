@@ -4,3 +4,8 @@ opencv-python
 numpy
 selenium
 bs4
+tensorflow
+Keras
+Pillow
+torch
+torchvision
