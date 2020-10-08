@@ -6,24 +6,59 @@
 </head>
 <body>
     <h4>Detect results</h4>
-    <img src="{{ user_image }}" alt="User Image">
-    <hr>
-    {% if results %}
+    <img src="{{ user_image }}" alt="User Image" class="img-thumbnail">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th><h4>Class</h4></th>
+                <th><h4>Cropped Images</h4></th>
+                <th><h4>Recommended Images</h4></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% if results %}
             {% for result in results %}
-                <h4>Cropped Image</h4>
-                <img src="{{ result[0] }}">
-                <hr>
-                <h4>Recommended Images</h4>
-                {% for img in result[1] %}
-                    {% if img %}
-                        <img src="{{ img }}">
-                    {% endif %}
-                {% endfor %}
-                <hr>
+                <tr>
+                    <th>
+                        <h5>{{ result[2] }}</h5>
+                    </th>
+                    <th>
+                        <img src="{{ result[0] }}" class="img-thumbnail">
+                    </th>
+                    <th>
+                        {% for img in result[1] %}
+                            {% if img %}
+                                <img src="{{ img }}" class="img-thumbnail">
+                            {% endif %}
+                        {% endfor %}
+                    </th>
+                </tr>
+
             {% endfor %}
-    {% else %}
-        No results
-    {% endif %}
-    <hr>
+        {% else %}
+            No results
+        {% endif %}
+        </tbody>
+
+    </table>
+<!--    <hr>-->
+<!--    {% if results %}-->
+<!--            {% for result in results %}-->
+<!--                <h4>Cropped Image</h4>-->
+<!--                <img src="{{ result[0] }}">-->
+<!--                <hr>-->
+<!--                <h4>Recommended Images</h4>-->
+<!--                {% for img in result[1] %}-->
+<!--                    {% if img %}-->
+<!--                        <img src="{{ img }}">-->
+<!--                    {% endif %}-->
+<!--                {% endfor %}-->
+<!--                <hr>-->
+<!--            {% endfor %}-->
+<!--    {% else %}-->
+<!--        No results-->
+<!--    {% endif %}-->
+<!--    <hr>-->
 </body>
 </html>
