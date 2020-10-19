@@ -13,16 +13,16 @@ from mmfashion.mmfashion.utils import get_img_tensor
 
 
 def get_model():
-    # model = get_retriever_model()
+    model = get_retriever_model()
 
     # model = VGG16(weights='imagenet', include_top=False)
-    model = ResNet50(weights='imagenet', include_top=False)
+    # model = ResNet50(weights='imagenet', include_top=False)
     return model
 
 model = get_model()
 
 
-def feature_image2(img=None, img_path=None):
+def feature_image(img=None, img_path=None):
     """
     Return features vector of image using mmfashion model
     :param img:
@@ -37,7 +37,7 @@ def feature_image2(img=None, img_path=None):
     return query_feat
 
 
-def feature_image(img=None, img_path=None):
+def feature_image2(img=None, img_path=None):
     """
     Return features vector of image
     :param img:
