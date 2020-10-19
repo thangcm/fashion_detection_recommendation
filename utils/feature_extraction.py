@@ -8,10 +8,34 @@ import os
 from controllers import detection
 from server import app
 import cv2
+from mmfashion.demo.test_retriever import get_retriever_model
+from mmfashion.mmfashion.utils import get_img_tensor
 
-# model = VGG16(weights='imagenet', include_top=False)
-model = ResNet50(weights='imagenet', include_top=False)
-model.summary()
+
+def get_model():
+    # model = get_retriever_model()
+
+    # model = VGG16(weights='imagenet', include_top=False)
+    model = ResNet50(weights='imagenet', include_top=False)
+    return model
+
+model = get_model()
+
+
+def feature_image2(img=None, img_path=None):
+    """
+    Return features vector of image using mmfashion model
+    :param img:
+    :param img_path:
+    :return:
+    """
+    img_tensor = get_img_tensor(img_path, False)
+    print(img_tensor.shape)
+    query_feat = model(img_tensor, landmark=None, return_loss=False)
+    query_feat = query_feat.data.cpu().numpy()
+    print(query_feat.shape)
+    return query_feat
+
 
 def feature_image(img=None, img_path=None):
     """
@@ -38,7 +62,10 @@ def feature_all_images(folder_path):
     Return all feature vector of images in the specific directory
     """
     images = []
+    c = 0
     for filename in os.listdir(folder_path):
+        print(c)
+        c+= 1
         # img = cv2.imread(os.path.join(folder_path,filename))
         img_path = os.path.join(folder_path, filename)
         img_feature = feature_image(img_path=img_path)

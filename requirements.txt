@@ -9,3 +9,7 @@ Keras
 Pillow
 torch
 torchvision
+matplotlib
+mmcv>=0.5.1
+scikit-image
+scikit-learn

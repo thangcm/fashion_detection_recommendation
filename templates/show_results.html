@@ -2,12 +2,24 @@
 <html>
     <link rel="stylesheet" type="text/css" href="static/css/bootstrap.css">
 <head>
-    <title>Index</title>
+    <title>RewardStyle AI</title>
 </head>
 <body>
+    <nav class="navbar navbar-light bg-light container">
+      <a class="navbar-brand" href="#">
+        <img src="/static/rewardstyle.png" width="30" height="30" alt="">
+          Image Detection and Recommendation
+      </a>
+    </nav>
+    <br>
+    <br>
+    <div class="container">
+
     <h4>Detect results</h4>
     <img src="{{ user_image }}" alt="User Image" class="img-thumbnail">
 
+    <br>
+    <br>
     <table class="table">
         <thead>
             <tr>
@@ -42,23 +54,6 @@
         </tbody>
 
     </table>
-<!--    <hr>-->
-<!--    {% if results %}-->
-<!--            {% for result in results %}-->
-<!--                <h4>Cropped Image</h4>-->
-<!--                <img src="{{ result[0] }}">-->
-<!--                <hr>-->
-<!--                <h4>Recommended Images</h4>-->
-<!--                {% for img in result[1] %}-->
-<!--                    {% if img %}-->
-<!--                        <img src="{{ img }}">-->
-<!--                    {% endif %}-->
-<!--                {% endfor %}-->
-<!--                <hr>-->
-<!--            {% endfor %}-->
-<!--    {% else %}-->
-<!--        No results-->
-<!--    {% endif %}-->
-<!--    <hr>-->
+    </div>
 </body>
 </html>

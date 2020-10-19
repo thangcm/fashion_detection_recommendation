@@ -44,12 +44,17 @@ def detect_image():
     weights_path = os.path.join(app.config["IMAGE_UPLOADS"], 'models/clothing_detection.pth')
     # weights_path = os.path.join(app.config["IMAGE_UPLOADS"], 'models/yolov3-df2_15000.weights')
     config_path = os.path.join(app.config["IMAGE_UPLOADS"], 'models/yolov3-df2.cfg')
+
     detected_image_path, crop_img_paths, crop_img_classes = detection.detect_image_with_pytorch(filename, app.config["IMAGE_UPLOADS"], weights_path, config_path)
+
 
     t1 = time.time()
     recommend_images = []
     for path in crop_img_paths:
         recommend_images.append(recommendation.recommend_heapq(path))
+        # recommend_images.append(recommendation.recommend_img(path))
+
+
     t2 = time.time()
     print("Time for recommendation: " + str(t2 - t1))
     # return render_template("show_detection.html", user_image = detected_image_path)
@@ -80,5 +85,5 @@ def create_hash_table():
 
 
 if __name__ == '__main__':
-    # create_hash_table()
+    create_hash_table()
     app.run()
