@@ -41,7 +41,7 @@ def recommend_heapq(path):
     k = 5
     while k > 0:
         image = heapq.heappop(h)
-        if image[0] < -0.25:
+        if image[0] < -0.8:
             print(image[0])
             out.append(image[1])
         k -= 1

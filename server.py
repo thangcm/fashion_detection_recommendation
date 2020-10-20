@@ -50,6 +50,7 @@ def detect_image():
 
     t1 = time.time()
     recommend_images = []
+    crop_img_paths = [detected_image_path]
     for path in crop_img_paths:
         recommend_images.append(recommendation.recommend_heapq(path))
         # recommend_images.append(recommendation.recommend_img(path))
@@ -85,5 +86,5 @@ def create_hash_table():
 
 
 if __name__ == '__main__':
-    create_hash_table()
+    # create_hash_table()
     app.run()
